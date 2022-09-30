@@ -1,18 +1,19 @@
+
 # @param {Integer[]} nums
 # @param {Integer} target
 # @return {Integer[]}
-def two_sum(array, target)
-  hash_sol = {}
-
-  array_size = array.length
-
-  for i in 0...array_size do
-
-    if hash_sol[array[i]].nil?
-      hash_sol[target - array[i]] = i
-    else
-      return [hash_sol[array[i]], i]
+def two_sum(nums, target)
+    differences = {}
+    
+    nums.each_with_index do |num, index|
+        differences[target-num] = index
     end
-
-  end
+    
+    nums.each_with_index do |num, index|
+        if differences[num]
+            index_of_difference = differences[num]
+            return [index, index_of_difference] unless index == index_of_difference
+        end
+    end
 end
+
